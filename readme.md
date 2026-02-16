@@ -75,7 +75,7 @@ Sección personalizada donde el usuario gestiona su lista de pilotos preferidos.
 
 ## ⚙️ Tecnologías Utilizadas
 
-- **Backend:** Python 3.12 & Django 5.x  
+- **Backend:** Python 3.12 & Django 5.2.8
 - **Frontend:** HTML5, CSS3, Bootstrap 5.3  
 - **Iconografía:** Bootstrap Icons & Flag Icons CSS  
 - **Base de Datos:** SQLite3
