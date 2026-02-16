@@ -48,13 +48,29 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+                        <a class="nav-link" href="{% url 'home' %}">
+                            <i class="bi bi-house-door me-1"></i> Inicio
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'parrilla' %}">Pilotos</a>
+                        <a class="nav-link" href="{% url 'parrilla' %}">
+                            <i class="bi bi-person me-1"></i> Pilotos
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'calendario' %}">Calendario</a>
+                        <a class="nav-link" href="{% url 'calendario' %}">
+                            <i class="bi bi-calendar3 me-1"></i> Calendario
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_predicciones' %}">
+                            <i class="bi bi-magic me-1"></i> Predicciones
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mis_favoritos' %}">
+                            <i class="bi bi-star me-1"></i> Favoritos
+                        </a>
                     </li>
                 </ul>
                 
