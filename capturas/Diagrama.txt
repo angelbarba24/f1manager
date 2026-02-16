@@ -1,0 +1,63 @@
+┌──────────────────────────┐
+│        Escuderia         │
+├──────────────────────────┤
+│ id : PK                  │
+│ nombre : CharField       │  ← único
+│ pais : CharField         │
+└─────────────┬────────────┘
+              │ 1:N (PROTECT)
+              │  Regla: no se puede borrar
+              │  una escudería con pilotos
+┌─────────────▼────────────┐
+│          Piloto           │
+├───────────────────────────┤
+│ id : PK                   │
+│ nombre : CharField        │
+│ numero : IntegerField     │
+│ pais : CharField          │
+│ escuderia_id : FK         │
+├───────────────────────────┤
+│ unique(nombre, numero)    │ ← regla de unicidad
+└─────────────┬─────────────┘
+              │
+              │ N:1
+              │
+┌─────────────▼─────────────┐
+│         Favorito           │
+├────────────────────────────┤
+│ id : PK                    │
+│ user_id : FK(User)         │
+│ piloto_id : FK(Piloto)     │
+│ fecha : DateTime           │
+├────────────────────────────┤
+│ unique(user, piloto)       │ ← regla: no duplicar favoritos
+└────────────────────────────┘
+
+
+┌──────────────────────────┐
+│         Circuito         │
+├──────────────────────────┤
+│ id : PK                  │
+│ nombre : CharField       │ ← único
+│ pais : CharField         │
+│ longitud_km : Float      │
+│ vueltas : Integer        │
+│ fecha : DateField        │ ← usada para validar predicciones
+└─────────────┬────────────┘
+              │ 1:N
+              │
+┌─────────────▼────────────┐
+│        Prediccion         │
+├───────────────────────────┤
+│ id : PK                   │
+│ user_id : FK(User)        │
+│ circuito_id : FK(Circuito)│
+│ primero_id : FK(Piloto)   │
+│ segundo_id : FK(Piloto)   │
+│ tercero_id : FK(Piloto)   │
+│ fecha_creacion : DateTime │
+├───────────────────────────┤
+│ unique(user, circuito)    │ ← regla: 1 predicción por carrera
+│ clean(): no predicciones  │
+│ en carreras pasadas        │ ← regla de fechas
+└───────────────────────────┘
