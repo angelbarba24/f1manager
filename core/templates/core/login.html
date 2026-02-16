@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso F1 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #101010;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, transparent 48%, #e10600 49%, #e10600 51%, transparent 52%);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .login-card {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            border-top: 5px solid #e10600;
+            border-radius: 10px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(225, 6, 0, 0.2);
+        }
+
+        .login-title {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            background: #2a2a2a;
+            border: none;
+            color: white;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .form-control:focus {
+            background: #333;
+            color: white;
+            box-shadow: none;
+            border: 1px solid #e10600;
+        }
+
+        .btn-f1 {
+            background-color: #e10600;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-f1:hover {
+            background-color: #ff0800;
+            transform: scale(1.02);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        
+        <div class="text-center mb-4">
+            <img src="https://www.formula1.com/etc/designs/fom-website/images/f1_logo_white.png" alt="F1 Logo" width="130">
+        </div>
+
+        <h2 class="login-title">F1 MANAGER <span style="color:#e10600">2026</span></h2>
+        
+        {% if form.errors %}
+            <div class="alert alert-danger p-2 text-center text-small">
+                Credenciales incorrectas
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <input type="text" name="username" class="form-control" placeholder="ID de Escudería (Usuario)" required autofocus>
+            </div>
+            
+            <div class="mb-3">
+                <input type="password" name="password" class="form-control" placeholder="Clave de Acceso" required>
+            </div>
+
+            <button type="submit" class="btn btn-f1 mt-2">Acceder al Paddock</button>
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+        <div class="footer-text">
+            Ángel Barba Fernández - 2º DAW
+        </div>
+    </div>
+
+</body>
+</html>

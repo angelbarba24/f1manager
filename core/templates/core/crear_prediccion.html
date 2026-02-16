@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-danger text-white text-center py-3">
+                <h3 class="mb-0 fw-bold">{% if editando %}Editar Predicción{% else %}Nueva Predicción{% endif %}</h3>
+            </div>
+            
+            <div class="card-body p-4">
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">🏁 Selecciona el Gran Premio</label>
+                        {{ form.circuito }}
+                    </div>
+
+                    <h5 class="text-muted border-bottom pb-2 mb-3">Tu Podio</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label text-warning fw-bold">🥇 Ganador</label>
+                        {{ form.primero }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-secondary fw-bold">🥈 Segundo Lugar</label>
+                        {{ form.segundo }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-danger fw-bold">🥉 Tercer Lugar</label>
+                        {{ form.tercero }}
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-dark btn-lg">Guardar Predicción</button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

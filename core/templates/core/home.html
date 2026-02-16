@@ -1,0 +1,100 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container py-4">
+    
+    <div class="row mb-5">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4 fw-bold">Bienvenido al Paddock, {{ user.username|title }}</h1>
+        </div>
+    </div>
+
+    {% if proxima_carrera %}
+    <div class="alert alert-dark border-danger border-start border-5 shadow-sm mb-5" role="alert">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="mb-2">
+                    <span class="badge bg-danger">Ronda {{ numero_carrera }} / {{ total_circuitos }}</span>
+                    <span class="badge bg-secondary">{{ proxima_carrera.fecha|date:"d M Y" }}</span>
+                </div>
+                <h2 class="alert-heading fw-bold mb-0 d-flex align-items-center">
+                    <span class="fi fi-{{ proxima_carrera.codigo_pais }} me-3 shadow-sm rounded"></span>
+                    GP de {{ proxima_carrera.pais }}
+                </h2>
+                <p class="text-muted mb-0 mt-2">Circuito: {{ proxima_carrera.nombre }} | {{ proxima_carrera.vueltas }} Vueltas</p>
+            </div>
+
+            <div class="col-md-4 text-center border-start border-secondary">
+                <h5 class="text-uppercase text-muted small mb-1">Próxima Carrera</h5>
+                {% if dias_restantes == 0 %}
+                    <h1 class="display-4 text-danger fw-bold mb-0">¡ES HOY!</h1>
+                {% elif dias_restantes == 1 %}
+                    <h1 class="display-4 fw-bold mb-0">Mañana</h1>
+                {% else %}
+                    <h1 class="display-3 fw-bold mb-0">{{ dias_restantes }}</h1>
+                    <small class="text-muted">Días restantes</small>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-success text-center mb-5 py-4">
+        <h2 class="fw-bold">🏆 Temporada 2026 Finalizada</h2>
+        <p>Nos vemos el próximo año.</p>
+    </div>
+    {% endif %}
+
+    <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 hover-card text-center">
+                <div class="card-body p-4">
+                    <div class="display-4 mb-3">🏎️</div>
+                    <h4 class="card-title">Parrilla</h4>
+                    <p class="text-muted small">Pilotos y Equipos.</p>
+                    <a href="{% url 'parrilla' %}" class="btn btn-sm btn-outline-danger w-100 stretched-link">Ver Parrilla</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 hover-card text-center">
+                <div class="card-body p-4">
+                    <div class="display-4 mb-3">📅</div>
+                    <h4 class="card-title">Calendario</h4>
+                    <p class="text-muted small">Fechas y Circuitos.</p>
+                    <a href="{% url 'calendario' %}" class="btn btn-sm btn-outline-dark w-100 stretched-link">Ver Calendario</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 hover-card text-center">
+                <div class="card-body p-4">
+                    <div class="display-4 mb-3">🔮</div>
+                    <h4 class="card-title">Predicciones</h4>
+                    <p class="text-muted small">Gestiona tus predicciones.</p>
+                    <a href="{% url 'lista_predicciones' %}" class="btn btn-sm btn-outline-success w-100 stretched-link">Ver Predicciones</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 hover-card text-center">
+                <div class="card-body p-4">
+                    <div class="display-4 mb-3">⭐</div>
+                    <h4 class="card-title">Favoritos</h4>
+                    <p class="text-muted small">Tu muro de la fama.</p>
+                    <a href="{% url 'mis_favoritos' %}" class="btn btn-sm btn-outline-warning w-100 stretched-link">Mis Pilotos</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .hover-card { transition: transform 0.2s; }
+    .hover-card:hover { transform: translateY(-5px); }
+</style>
+{% endblock %}

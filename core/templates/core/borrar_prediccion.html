@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow border-danger">
+            <div class="card-body text-center p-5">
+                <h2 class="text-danger mb-4">⚠️ ¿Eliminar Predicción?</h2>
+                <p class="lead">Estás a punto de borrar tu quiniela para el <strong>GP de {{ prediccion.circuito.pais }}</strong>.</p>
+                <p class="text-muted">Esta acción no se puede deshacer.</p>
+                
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-lg me-2">Sí, Eliminar</button>
+                    <a href="{% url 'lista_predicciones' %}" class="btn btn-secondary btn-lg">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

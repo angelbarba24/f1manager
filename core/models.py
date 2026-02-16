@@ -9,6 +9,7 @@ from django.utils import timezone
 class Escuderia(models.Model):
     nombre = models.CharField(max_length=100, unique=True)  # Unicidad: no puede haber dos escuderías con el mismo nombre
     pais = models.CharField(max_length=50)
+    color = models.CharField(max_length=7, default="#333333", help_text="Ej: #FF0000")
 
     def __str__(self):
         return self.nombre
@@ -17,6 +18,7 @@ class Escuderia(models.Model):
 class Circuito(models.Model):
     nombre = models.CharField(max_length=100, unique=True)  # Unicidad: no puede haber dos circuitos con el mismo nombre
     pais = models.CharField(max_length=50)
+    codigo_pais = models.CharField(max_length=2, default="xx")
     longitud_km = models.FloatField()
     vueltas = models.IntegerField()
     fecha = models.DateField()  # Necesario para la regla: no permitir predicciones en carreras finalizadas
@@ -28,6 +30,7 @@ class Circuito(models.Model):
 class Piloto(models.Model):
     nombre = models.CharField(max_length=100)
     numero = models.IntegerField()
+    codigo_pais = models.CharField(max_length=2, default="xx", help_text="Código ISO de 2 letras (es, gb, fr...)")
     escuderia = models.ForeignKey(Escuderia, on_delete=models.PROTECT)  
     # PROTECT: no se puede borrar una escudería si tiene pilotos asociados
 

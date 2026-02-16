@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Calendario Oficial 2026</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle shadow-sm bg-white rounded">
+        <thead class="table-dark">
+            <tr>
+                <th>Fecha</th>
+                <th>País</th>
+                <th>Gran Premio / Circuito</th>
+                <th class="text-center">Vueltas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in circuitos %}
+            <tr {% if "Madrid" in c.nombre %}class="table-warning border-start border-5 border-danger"{% endif %}>
+                
+                <td class="fw-bold text-muted">{{ c.fecha|date:"d M" }}</td>
+                
+                <td>
+                    <span class="fi fi-{{ c.codigo_pais }} me-2 shadow-sm rounded"></span>
+                    <span class="fw-bold">{{ c.pais }}</span>
+                </td>
+                
+                <td>
+                    {{ c.nombre }}
+                    {% if "Madrid" in c.nombre %} 
+                        <span class="badge bg-danger ms-2">ESTRENO</span>
+                    {% endif %}
+                </td>
+                
+                <td class="text-center">
+                    <span class="badge bg-secondary">{{ c.vueltas }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

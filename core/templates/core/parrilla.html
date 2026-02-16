@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Parrilla de Salida 2026</h2>
+</div>
+
+{% regroup pilotos by escuderia as escuderia_list %}
+
+<div class="row">
+    {% for escuderia in escuderia_list %}
+    <div class="col-12 mb-4">
+        
+        <div class="card shadow-sm border-0">
+            <div class="card-header text-white fw-bold d-flex justify-content-between align-items-center" 
+                 style="background-color: {{ escuderia.grouper.color }}; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">
+                <span class="fs-5">{{ escuderia.grouper.nombre }}</span>
+                <span class="badge bg-white text-dark opacity-75">{{ escuderia.grouper.pais }}</span>
+            </div>
+            
+            <div class="card-body bg-light">
+                <div class="row">
+                    {% for piloto in escuderia.list %}
+                    <div class="col-md-6 mb-2">
+                        <div class="d-flex align-items-center bg-white p-3 rounded shadow-sm border h-100">
+                            
+                            <div class="display-6 fw-bold me-3" style="color: {{ escuderia.grouper.color }}; min-width: 60px;">
+                                {{ piloto.numero }}
+                            </div>
+                            
+                            <div class="flex-grow-1 border-start ps-3">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <h5 class="mb-0 fw-bold">{{ piloto.nombre }}</h5>
+                                    
+                                    <a href="{% url 'toggle_favorito' piloto.id %}" class="text-decoration-none">
+                                        {% if piloto.id in lista_favoritos_ids %}
+                                            <i class="bi bi-heart-fill text-danger fs-5"></i>
+                                        {% else %}
+                                            <i class="bi bi-heart text-muted fs-5"></i>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                
+                                <div class="text-muted small mt-1">
+                                    <span class="fi fi-{{ piloto.codigo_pais }} me-1 shadow-sm"></span> 
+                                    {{ piloto.pais }}
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

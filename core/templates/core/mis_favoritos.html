@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">⭐ Mis Pilotos Favoritos</h2>
+
+    <div class="row">
+        {% for fav in favoritos %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 border-top border-4" style="border-color: {{ fav.piloto.escuderia.color }} !important;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="fw-bold mb-0">{{ fav.piloto.nombre }}</h5>
+                        <a href="{% url 'toggle_favorito' fav.piloto.id %}" class="btn btn-sm btn-outline-danger">Quitar</a>
+                    </div>
+                    <p class="text-muted small mb-2">{{ fav.piloto.escuderia.nombre }}</p>
+                    <span class="fi fi-{{ fav.piloto.codigo_pais }}"></span> {{ fav.piloto.pais }}
+                </div>
+                <div class="card-footer bg-light">
+                    <small class="text-muted">Añadido el {{ fav.fecha|date:"d/m/Y" }}</small>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="lead text-muted">Aún no tienes pilotos favoritos. Ve a la parrilla y pulsa el corazónm para añadir alguno.</p>
+            <a href="{% url 'parrilla' %}" class="btn btn-danger">Ir a la Parrilla</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
