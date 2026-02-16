@@ -52,23 +52,24 @@ El proyecto implementa reglas estrictas de base de datos para asegurar la veraci
 
 ### 🏠 Panel de Control (Home)
 El Dashboard principal muestra una cuenta regresiva dinámica hacia el próximo Gran Premio con la bandera del país anfitrión y acceso rápido a todas las secciones.  
-`(Ver home.png)`
+![Home](capturas/home.png)
 
 ### 🏎️ Parrilla de Salida
 Listado agrupado por escuderías con sus colores oficiales y banderas ISO. Permite marcar pilotos como favoritos en tiempo real.  
-`(Ver parrilla.png)`
+![Parrilla](capturas/parrilla.png)
 
 ### 📅 Calendario Oficial
 Cronograma completo de las 24 carreras de la temporada 2026, destacando estrenos como el Circuito IFEMA Madrid.  
-`(Ver calendario.png)`
+![Calendario](capturas/calendario.png)
 
 ### 🔮 Sistema de Predicciones
 Los usuarios pueden intentar adivinar el podio de las próximas carreras. El sistema bloquea automáticamente la edición si la carrera ya ha comenzado.  
-`(Ver predicciones.png y formulario_prediccion.png)`
+![Predicciones](capturas/predicciones.png)`
+![Formulario predicción](capturas/formulario_prediccion.png)
 
 ### ⭐ Mis Favoritos
 Sección personalizada donde el usuario gestiona su lista de pilotos preferidos.  
-`(Ver favoritos.png)`
+![Favoritos](capturas/favoritos.png)
 
 ---
 
